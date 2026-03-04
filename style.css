@@ -6,19 +6,11 @@ html {
 /* Light mode (default) */
 :root {
 	color-scheme: light;
-	--text-color: #000000;
-	--bg-color: #ffffff;
 }
 
-html.dark {
-	color-scheme: dark;
-	--text-color: #ffffff;
-	--bg-color: #111827;
-}
-
-body {
-	background-color: var(--bg-color);
-	color: var(--text-color);
+html body {
+	background-color: #ffffff;
+	color: #000000;
 }
 
 /* Dark mode */
@@ -58,6 +50,7 @@ p {
 	color: #000000;
 }
 
+/* Section text colors */
 section p {
 	color: #000000;
 }
@@ -72,7 +65,7 @@ html.dark label {
 
 /* Light mode labels */
 label {
-	color: inherit;
+	color: #000000;
 }
 
 html.dark button:not([class*="bg-indigo"]):not([class*="bg-white"]) {
@@ -204,10 +197,11 @@ html.dark textarea::placeholder {
 }
 
 /* Ensure input backgrounds are correct */
-input,
+input[type="text"],
+input[type="email"],
 textarea {
-	background-color: var(--bg-color);
-	color: var(--text-color);
+	background-color: #ffffff;
+	color: #000000;
 }
 
 html.dark input[type="text"],
