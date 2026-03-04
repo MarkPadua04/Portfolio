@@ -1,0 +1,215 @@
+/* Smooth scrolling */
+html {
+	scroll-behavior: smooth;
+}
+
+/* Light mode (default) */
+:root {
+	color-scheme: light;
+}
+
+html body {
+	background-color: #ffffff;
+	color: #000000;
+}
+
+/* Dark mode */
+html.dark {
+	color-scheme: dark;
+}
+
+html.dark body {
+	background-color: #111827;
+	color: #ffffff;
+}
+
+html.dark a {
+	color: #e5e7eb;
+}
+
+html.dark section {
+	background-color: inherit;
+}
+
+/* Text color adjustments for dark mode */
+html.dark h1,
+html.dark h2,
+html.dark h3,
+html.dark h4,
+html.dark h5,
+html.dark h6 {
+	color: #f3f4f6;
+}
+
+html.dark p {
+	color: #ffffff;
+}
+
+/* Ensure all paragraphs have proper contrast */
+p {
+	color: #000000;
+}
+
+/* Section text colors */
+section p {
+	color: #000000;
+}
+
+html.dark section p {
+	color: #ffffff;
+}
+
+html.dark label {
+	color: #ffffff;
+}
+
+/* Light mode labels */
+label {
+	color: #000000;
+}
+
+html.dark button:not([class*="bg-indigo"]):not([class*="bg-white"]) {
+	color: inherit;
+}
+
+/* Prose styles for dark mode */
+.prose {
+	color: #000000;
+}
+
+html.dark .prose {
+	color: #ffffff;
+}
+
+html.dark .prose a {
+	color: #60a5fa;
+}
+
+/* Fade in animation */
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.fade-in-element {
+	opacity: 0;
+	animation: fadeInUp 0.6s ease-out both;
+	animation-timeline: view();
+	animation-range: entry 0% cover 25%;
+}
+
+/* Back to Top Button animation */
+@keyframes slideUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+#back-to-top.visible {
+	opacity: 1;
+	visibility: visible;
+	animation: slideUp 0.3s ease-out;
+}
+
+/* Smooth transitions */
+* {
+	transition-property: background-color, border-color, color, fill, stroke;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	transition-duration: 200ms;
+}
+
+/* Skill logo hover motion */
+.skill-logo{
+	transition: transform 350ms cubic-bezier(.22,.9,.31,1), filter 300ms ease, box-shadow 300ms ease;
+	will-change: transform, filter;
+	display: inline-block;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.skill-logo:hover,
+.skill-logo:focus{
+	transform: translateY(-8px) scale(1.08) rotate(-3deg);
+	filter: drop-shadow(0 14px 30px rgba(17,24,39,0.12));
+	box-shadow: 0 8px 24px rgba(2,6,23,0.08);
+	outline: none;
+}
+
+.skill-logo:active{
+	transform: translateY(-2px) scale(0.98);
+}
+
+/* Make sure focused images show a subtle focus ring for keyboard users */
+.skill-logo:focus{
+	box-shadow: 0 0 0 4px rgba(59,130,246,0.12), 0 8px 24px rgba(2,6,23,0.06);
+}
+
+
+/* Footer tweaks for white theme */
+.site-footer {
+	--footer-bg: #ffffff;
+	--footer-border: #e6e7eb;
+}
+
+footer a {
+	transition: color 180ms ease, transform 180ms ease;
+}
+
+footer a:hover {
+	transform: translateY(-2px);
+}
+
+@media (max-width: 640px) {
+	footer .max-w-6xl { padding-left: 1rem; padding-right: 1rem; }
+	
+	#back-to-top {
+		bottom: 6rem;
+		right: 1rem;
+		padding: 0.5rem;
+	}
+	
+	#back-to-top svg {
+		width: 1.25rem;
+		height: 1.25rem;
+	}
+}
+
+/* Form inputs light/dark mode placeholder styling */
+input::placeholder,
+textarea::placeholder {
+	color: #9ca3af;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+	color: #6b7280;
+}
+
+/* Ensure input backgrounds are correct */
+input[type="text"],
+input[type="email"],
+textarea {
+	background-color: #ffffff;
+	color: #000000;
+}
+
+html.dark input[type="text"],
+html.dark input[type="email"],
+html.dark textarea {
+	background-color: #1f2937;
+	color: #ffffff;
+}
+
+
+

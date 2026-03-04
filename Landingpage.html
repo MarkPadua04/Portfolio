@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <script>
+        tailwindConfig = {
+            darkMode: 'class'
+        }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="text-black dark:text-white\">
+    <script>
+        // Apply theme immediately on page load to prevent flash
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        // Default to light mode if no preference saved
+        const isDark = savedTheme === 'dark' ? true : (savedTheme === 'light' ? false : prefersDark);
+        
+        if (isDark) {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+        }
+    </script>
+    <!-- Include this script tag or install @tailwindplus/elements via npm: -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script> -->
+
+    <div class="text-black dark:text-white">
+        <header class="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shadow-sm">
+            <nav aria-label="Global" class="flex items-center justify-between p-8 lg:px-18">
+                <div class="flex lg:flex-1">
+                    <a href="#" class="-m-1.5 p-1.5">
+                        <span class=\"text-lg/6 font-semibold text-black dark:text-white\">
+                            Certified.Kram
+                        </span>
+                    </a>
+                </div>
+
+                <div class="flex lg:hidden">
+                    <button type="button" command="show-modal" commandfor="mobile-menu"
+                        class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-black dark:text-gray-200">
+                        <span class="sr-only">Open main menu</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                            aria-hidden="true" class="size-6">
+                            <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="hidden lg:flex lg:gap-x-20 mr-40">
+                    <a href="#home" class="text-lg/6 font-semibold text-black dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition">Home</a>
+                    <a href="#projects" class="text-lg/6 font-semibold text-black dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition">Project</a>
+                    <a href="#about" class="text-lg/6 font-semibold text-black dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition">About</a>
+                    <a href="#contact" class="text-lg/6 font-semibold text-black dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition">Contact</a>
+                </div>
+                
+                <!-- Dark Mode Toggle -->
+                <button id="theme-toggle" class="flex items-center justify-center p-2 rounded-md text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition" title="Toggle Dark Mode">
+                    <svg id="sun-icon" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v6m0 6v6M4.22 4.22l4.24 4.24m5.08 5.08l4.24 4.24M1 12h6m6 0h6M4.22 19.78l4.24-4.24m5.08-5.08l4.24-4.24M19.78 19.78l-4.24-4.24m-5.08-5.08l-4.24-4.24"/></svg>
+                    <svg id="moon-icon" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+            </nav>
+
+            <el-dialog>
+                <dialog id="mobile-menu" class="backdrop:bg-transparent lg:hidden">
+                    <div tabindex="0" class="fixed inset-0 focus:outline-none">
+                        <el-dialog-panel
+                            class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 dark:bg-gray-900 dark:sm:ring-gray-100/10">
+
+                            <div class="flex items-center justify-between">
+                                <a href="#" class="-m-1.5 p-1.5">
+                                    <span class="sr-only">Your Company</span>
+                                    <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
+                                        alt="" class="h-8 w-auto dark:hidden" />
+                                    <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
+                                        alt="" class="h-8 w-auto not-dark:hidden" />
+                                </a>
+
+                                <button type="button" command="close" commandfor="mobile-menu"
+                                    class="-m-2.5 rounded-md p-2.5 text-black dark:text-gray-200">
+                                    <span class="sr-only">Close menu</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.5" aria-hidden="true" class="size-6">
+                                        <path d="M6 18 18 6M6 6l12 12"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div class="mt-6 flow-root">
+                                <div class="-my-6 divide-y divide-gray-500/10 dark:divide-white/10">
+                                    <div class="space-y-2 py-6">
+                                        <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-black hover:bg-gray-100 dark:text-white dark:hover:bg-white/5 transition">Product</a>
+                                        <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-black hover:bg-gray-100 dark:text-white dark:hover:bg-white/5 transition">Features</a>
+                                        <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-black hover:bg-gray-100 dark:text-white dark:hover:bg-white/5 transition">Marketplace</a>
+                                        <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-black hover:bg-gray-100 dark:text-white dark:hover:bg-white/5 transition">Company</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </el-dialog-panel>
+                    </div>
+                </dialog>
+            </el-dialog>
+        </header>
+
+        <section id="home" class="relative isolate px-6 pt-14 lg:px-0">
+            <div aria-hidden="true"
+                class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
+                <div
+                    class="relative left-[calc(50%-11rem)] aspect-1155/678 w-144.5 -translate-x-1/2 rotate-30 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-288.75"
+                    style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+                </div>
+            </div>
+
+            <div class="w-full max-w-none pt-28 pb-16 px-12">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+                    <div class="text-left lg:pl-24">
+                        <p class="text-lg text-black dark:text-white">
+                            Hey, I'm <span class="font-semibold text-black dark:text-white">Mark</span>
+                        </p>
+
+                        <h1 class="text-5xl font-bold tracking-tight text-black dark:text-white sm:text-6xl mt-2">
+                            UI Designer <br />
+                            <span class="text-black dark:text-white">Future</span> Web Developer
+                        </h1>
+
+                        <p class="mt-6 text-lg text-black dark:text-white">
+                            As a BSIT student, I specialize in UI/UX design while building skills in web development.
+                            I aim to create meaningful and responsive digital experiences.
+                        </p>
+
+                        <div class="mt-10 flex items-center justify-start gap-x-4">
+                            <a href="#contact" class="rounded-md bg-indigo-600 dark:bg-indigo-600 px-6 py-3 text-sm font-semibold text-white hover:bg-indigo-700 dark:hover:bg-indigo-700 transition shadow-md hover:shadow-lg">
+                                Get in Touch
+                            </a>
+                            <a href="#projects" class="rounded-md bg-gray-800 dark:bg-gray-700 px-6 py-3 text-sm font-semibold text-white hover:bg-gray-900 dark:hover:bg-gray-600 transition shadow-md hover:shadow-lg">
+                                See Projects
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center ml-4">
+                        <img src="Assets/Frontimage.png" alt="Profile" class="w-auto h-auto" />
+                    </div>
+
+                </div>
+            </div>
+
+            <div aria-hidden="true"
+                class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
+                <div
+                    class="relative left-[calc(50%+3rem)] aspect-1155/678 w-144.5 -translate-x-1/2 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-288.75"
+                    style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <section id="skills" class="mt-24 lg:mt-40 py-24">
+
+
+  <div class="max-w-6xl mx-auto px-6 text-center">
+
+    <h2 class="text-4xl font-bold text-black dark:text-white">
+      Technical Skills
+    </h2>
+
+    <p class="mt-4 text-black dark:text-gray-300 max-w-2xl mx-auto">
+      Crafting seamless digital experiences with HTML, CSS, Java, C#, Dart, and SQL,
+      while bringing creativity to life through Photoshop, Premiere Pro, and Figma.
+    </p>
+
+    <!-- SKILLS GRID -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12 mt-16">
+
+      <div class="flex flex-col items-center">
+        <img src="Assets/html.png" class="skill-logo h-16 mb-3" tabindex="0">
+        <p class="font-semibold text-black dark:text-white">HTML</p>
+      </div>
+
+      <div class="flex flex-col items-center">
+        <img src="Assets/css.png" class="skill-logo h-16 mb-3" tabindex="0">
+        <p class="font-semibold text-black dark:text-white">CSS</p>
+      </div>
+
+      <div class="flex flex-col items-center">
+        <img src="Assets/java.png" class="skill-logo h-16 mb-3" tabindex="0">
+        <p class="font-semibold text-black dark:text-white">JAVA</p>
+      </div>
+
+      <div class="flex flex-col items-center">
+        <img src="Assets/csharp.png" class="skill-logo h-16 mb-3" tabindex="0">
+        <p class="font-semibold text-black dark:text-white">C#</p>
+      </div>
+
+      <div class="flex flex-col items-center">
+        <img src="Assets/dart.png" class="skill-logo h-16 mb-3" tabindex="0">
+        <p class="font-semibold text-black dark:text-white">DART</p>
+      </div>
+
+      <div class="flex flex-col items-center">
+        <img src="Assets/sql.png" class="skill-logo h-16 mb-3" tabindex="0">
+        <p class="font-semibold text-black dark:text-white">SQL</p>
+      </div>
+
+      <div class="flex flex-col items-center">
+        <img src="Assets/photoshop.png" class="skill-logo h-16 mb-3" tabindex="0">
+        <p class="font-semibold text-black dark:text-white">Photoshop</p>
+      </div>
+
+      <div class="flex flex-col items-center">
+        <img src="Assets/figma.png" class="skill-logo h-16 mb-3" tabindex="0">
+        <p class="font-semibold text-black dark:text-white">Figma</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS SECTION -->
+<section id="projects" class="py-24 px-6 lg:px-20">
+
+  <!-- Title -->
+  <div class="text-center mb-16">
+    <h2 class="text-4xl font-bold text-black dark:text-white">Projects</h2>
+    <p class="mt-4 text-black dark:text-gray-300 max-w-2xl mx-auto">
+      Showcasing my latest projects, skills, and experience.
+      Explore how I blend modern design with practical solutions.
+    </p>
+  </div>
+
+  <!-- Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-6xl mx-auto">
+
+    <!-- PROJECT CARD -->
+    <div class="group relative overflow-hidden rounded-2xl shadow-2xl">
+      
+      <!-- Image -->
+      <img src="Assets/MPDClogo.png"
+           alt="Project"
+           class="w-full h-72 object-cover transition duration-500 group-hover:scale-110">
+
+      <!-- Overlay -->
+      <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-center items-center text-center p-6">
+
+        <h3 class="text-white text-2xl font-bold">MPDC Attendance & Payroll System with Biometrics</h3>
+        <p class="text-black dark:text-gray-300 text-sm mt-2">
+            C#  •  SQL • UI/UX Design • Windows Forms • Biometric Integration • Azure Database.
+        </p>
+
+          <div class="flex gap-4 mt-6">
+            <button type="button"
+               class="px-4 py-2 bg-white text-black rounded-lg font-semibold hover:bg-gray-200 open-project"
+               data-title="MPDC Attendance & Payroll System with Biometrics"
+               data-images="Assets/MPDC1.png,Assets/MPDC2.png,Assets/MPDC3.png,Assets/MPDC4.png,Assets/MPDC5.png"
+               >
+             View
+            </button>
+
+          </div>
+
+      </div>
+    </div>
+
+    <!-- DUPLICATE THIS CARD FOR OTHER PROJECTS -->
+
+     <div class="group relative overflow-hidden rounded-2xl shadow-2xl">
+      <img src="Assets/MPDCPROJECT2.png"
+           alt="Project"
+           class="w-full h-72 object-cover transition duration-500 group-hover:scale-110">
+
+      <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-center items-center text-center p-6">
+
+        <h3 class="text-white text-2xl font-bold">Designed an automated attendance and payroll approval workflow.</h3>
+        <p class="text-black dark:text-gray-300 text-sm mt-2">Figma</p>
+
+        <div class="flex gap-4 mt-6">
+          <button type="button" class="px-4 py-2 bg-white text-black rounded-lg font-semibold hover:bg-gray-200 open-project"
+                  data-title="Designed an automated attendance and payroll approval workflow."
+                  data-images="Assets/MPDCchart.png">
+            View
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+    
+     <!-- DUPLICATE THIS CARD FOR OTHER PROJECTS -->
+
+     <div class="group relative overflow-hidden rounded-2xl shadow-2xl">
+      <img src="Assets/MPDCPROJECT2.png"
+           alt="Project"
+           class="w-full h-72 object-cover transition duration-500 group-hover:scale-110">
+
+      <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-center items-center text-center p-6">
+
+        <h3 class="text-white text-2xl font-bold">WALA PA </h3>
+        <p class="text-black dark:text-gray-300 text-sm mt-2">Figma</p>
+
+        <div class="flex gap-4 mt-6">
+          <button type="button" class="px-4 py-2 bg-white text-black rounded-lg font-semibold hover:bg-gray-200 open-project"
+                  data-title="Designed an automated attendance and payroll approval workflow."
+                  data-images="Assets/MPDCchart.png">
+            View
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+
+     
+     <!-- DUPLICATE THIS CARD FOR OTHER PROJECTS -->
+
+     <div class="group relative overflow-hidden rounded-2xl shadow-2xl">
+      <img src="Assets/MPDCPROJECT2.png"
+           alt="Project"
+           class="w-full h-72 object-cover transition duration-500 group-hover:scale-110">
+
+      <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-center items-center text-center p-6">
+
+        <h3 class="text-white text-2xl font-bold">WALA PA DIN  </h3>
+        <p class="text-black dark:text-gray-300 text-sm mt-2">Figma</p>
+
+        <div class="flex gap-4 mt-6">
+          <button type="button" class="px-4 py-2 bg-white text-black rounded-lg font-semibold hover:bg-gray-200 open-project"
+                  data-title="Designed an automated attendance and payroll approval workflow."
+                  data-images="Assets/MPDCchart.png">
+            View
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  </div>
+   
+  
+
+  </div>
+</section>
+
+  <!-- About Section -->
+  <section id="about" class="py-24 px-6 lg:px-20">
+    <div class="max-w-4xl mx-auto fade-in-element">
+      <h2 class="text-4xl font-bold text-black dark:text-white mb-8">About Me</h2>
+      <div class="prose prose-lg dark:prose-invert max-w-none">
+        <p class="text-lg text-black dark:text-gray-200 leading-relaxed">
+          I'm a BSIT student with a passion for creating beautiful and functional digital experiences. With expertise in UI/UX design and growing skills in web development, I blend creative design with practical coding solutions. I'm driven by the challenge of solving complex problems and delivering seamless user experiences that make a real impact.
+        </p>
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+            <h3 class="text-xl font-semibold text-black dark:text-white mb-3">Design</h3>
+            <p class="text-black dark:text-white">Specialized in UI/UX design using Figma, with focus on user-centered design practices and modern design systems.</p>
+          </div>
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+            <h3 class="text-xl font-semibold text-black dark:text-white mb-3">Development</h3>
+            <p class="text-black dark:text-white">Proficient in web development with C#, SQL, and Windows Forms. Building responsive and scalable applications.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-24 px-6 lg:px-20">
+    <div class="max-w-3xl mx-auto fade-in-element">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-black dark:text-white mb-4">Get In Touch</h2>
+        <p class="text-lg text-black dark:text-gray-300">Have a project or question? I'd love to hear from you.</p>
+      </div>
+      
+      <form id="contact-form" class="space-y-6">
+        <div>
+          <label for="name" class="block text-sm font-medium text-black dark:text-gray-300 mb-2">Name</label>
+          <input type="text" id="name" name="name" required class="w-full px-4 py-2 bg-white dark:bg-gray-700 text-black dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-transparent outline-none transition" placeholder="Your name">
+        </div>
+        
+        <div>
+          <label for="email" class="block text-sm font-medium text-black dark:text-gray-300 mb-2">Email</label>
+          <input type="email" id="email" name="email" required class="w-full px-4 py-2 bg-white dark:bg-gray-700 text-black dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-transparent outline-none transition" placeholder="your.email@example.com">
+        </div>
+        
+        <div>
+          <label for="message" class="block text-sm font-medium text-black dark:text-gray-300 mb-2">Message</label>
+          <textarea id="message" name="message" rows="5" required class="w-full px-4 py-2 bg-white dark:bg-gray-700 text-black dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-transparent outline-none transition resize-none" placeholder="Your message here..."></textarea>
+        </div>
+        
+        <button type="submit" class="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition duration-200">
+          Send Message
+        </button>
+        <p id="form-message" class="text-sm text-center text-black dark:text-gray-300"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="fixed bottom-8 right-8 bg-indigo-600 text-white p-3 rounded-full shadow-lg hover:bg-indigo-700 transition duration-200 opacity-0 invisible" title="Back to Top">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+  </button>
+
+  <!-- End of main content before footer -->
+
+  <!-- Footer -->
+  <div id="project-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/60 p-4">
+    <div class="relative w-full max-w-4xl bg-white dark:bg-gray-800 rounded-xl shadow-2xl overflow-hidden">
+      <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+        <h3 id="modal-title" class="text-lg font-semibold text-black dark:text-white">Project</h3>
+        <button id="modal-close" class="text-black dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition">Close ✕</button>
+      </div>
+
+      <div class="relative bg-gray-100 dark:bg-gray-700 h-96 flex items-center justify-center">
+        <div id="modal-slides" class="w-full h-full flex items-center justify-center overflow-hidden px-12"></div>
+      </div>
+
+      <div id="modal-thumbs-wrap" class="bg-white dark:bg-gray-800 p-3 border-t border-gray-200 dark:border-gray-700">
+        <div id="modal-thumbs" class="max-w-4xl mx-auto flex items-center justify-center gap-3 overflow-auto"></div>
+      </div>
+
+      <div class="flex items-center justify-between p-4 border-t border-gray-200 dark:border-gray-700">
+        <div id="slide-indicator" class="text-sm text-black dark:text-gray-300">0 / 0</div>
+        <div class="flex gap-3">
+          <a id="modal-live" href="#" target="_blank" class="px-3 py-1 bg-indigo-600 text-white rounded-md text-sm hidden">Live</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+<footer class="border-t border-gray-200 dark:border-gray-700 mt-16">
+  <div class="max-w-6xl mx-auto px-6 py-8">
+    <div class="flex flex-col md:flex-row items-center justify-between text-sm text-black dark:text-gray-400">
+      <p>© 2026 Certified.Kram. All rights reserved.</p>
+      <div class="flex items-center gap-4 mt-4 md:mt-0">
+        <a href="https://github.com/MarkPadua04" target="_blank" rel="noopener noreferrer" class="text-gray-400 dark:text-gray-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition" title="GitHub">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12c0 5.3 3.4 9.8 8.2 11.3.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2 1-.3 2-.4 3-.4s2 .1 3 .4c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.2 0 4.6-2.9 5.6-5.6 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.8-1.5 8.2-6 8.2-11.3C24 5.4 18.6 0 12 0z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/mark.padua.7543/" target="_blank" rel="noopener noreferrer" class="text-gray-400 dark:text-gray-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition" title="Facebook">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/certified.kram/" target="_blank" rel="noopener noreferrer" class="text-gray-400 dark:text-gray-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition" title="Instagram">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4" ry="4" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="17" cy="7" r="0.5" fill="currentColor"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/markpadua829/" target="_blank" rel="noopener noreferrer" class="text-gray-400 dark:text-gray-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition" title="LinkedIn">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.475-2.236-1.986-2.236-1.081 0-1.722.731-2.004 1.44-.103.25-.129.597-.129.945v5.42h-3.554s.043-8.789 0-9.696h3.554v1.371c.429-.661 1.193-1.602 2.9-1.602 2.108 0 3.685 1.38 3.685 4.344v5.583zM5.337 9.433c-1.144 0-1.915-.759-1.915-1.71 0-.956.768-1.71 1.96-1.71 1.191 0 1.912.754 1.937 1.71 0 .951-.746 1.71-1.982 1.71zm1.946 11.019H3.394V9.756h3.888v10.696zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
